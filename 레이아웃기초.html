@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>레이아웃(배치)기초</title>
+</head>
+<style>
+/*
+block: 옆에 그 어떤 태그도 허용하지x, 수평선 성의 너비 혼자 독차지
+		width, height,padding 등 허용이 가능
+inline: 옆에 다른 태그가 올 수 있다, 수평선 상의 너비 자기 크기만큼 확보
+		width, height,padding 등 적용이 불가
+*/
+/*
+box1과 bpx2를 감싸서 한꺼번에 실어나를 바깥쪽 box역할
+*/
+#wrapper{
+	background:blue;
+	width:500px;
+	height:400px;
+	margin:auto; /*양쪽 여백을 동일하게 스스로 계산하여 처리*/
+	font-size:0px;
+}
+#box1, #box2{
+	width:250px;
+	height:400px;
+	display:inline-block;
+}
+#box1{
+	background:red;
+}
+#box2{
+	background:yellow;
+}
+
+</style>
+<body>
+<!--id, name의 공통 목적 : 태그 요소들간의 구분
+	단 차이점: id 중복불가, name 중복불가
+-->
+	<div id="wrapper">
+		<div id="box1"></div>
+		<div id="box2"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>게임화면 만들기</title>
+<style>
+body{
+	margin:0px;
+	padding:0px;
+}
+#wrapper{
+	background:url(../images/game_bg.jpg);
+	background-size:100% 500px; /*width, height*/
+	height:500px;
+	
+}
+/*너비값만 조절하면, 해당 너비에 대한 적절한 비율을 유지한 높이값을 스스로 계산*/
+#pic{
+	width:50px;
+	position:absolute; /*부모 요소를 기준으로 한 위치속성*/
+	left:0px;
+	top:100px;
+}
+</style>
+<script>
+/*
+script태그 영역은 html이나 css가 아닌, 즉 디자인 영역이 아니라 프로그래밍 언언의 영역이다. 따라서 더 예민하기 떄문에 대소문자 등을 구분한다.(코드작성 시 주의)
+*/
+console.log(3+4);
+console.log("윤지현");
+
+//우주선의 x좌표값을 10증가 시킨다
+//중괄호{브레이스}의 역할? 모든 프로그래밍 언어에서 코드의 범위를 나타냄
+var x=0;//변수 0을 선언함
+
+//js로 배경 css를 제어해보기
+var bgX=0; //배경값을 누적시킬 변수
+
+function bgEffect(){
+	//문서내의 배경이 적용된 wrapper의  css의 중 배경 x값을 감소시키자
+	bgX=bgX+2;
+	//document.getElementById("wrapper").style.backgroundPosition=bgX+"px 0px";
+	document.getElementById("wrapper").style.backgroundPosition="0px "+bgX+ "px";
+
+	rotate();
+}
+
+//아래방향으로 움직이기
+//문서내의 pic 이라 불리는 요소의 스타일 중 y 좌표값을 증가시킨다
+var y=100;//초기 css가 100부터 시작했으므로, 자연스럽게 보이려고
+function down(){
+	y=y+5;
+	document.getElementById("pic").style.top=y+"px";
+
+}
+function up(){
+	y=y-5;
+	document.getElementById("pic").style.top=y+"px";
+
+}
+
+function moveleft(){
+	x=x-5;//기존 x값에 -5 누적
+	document.getElementById("pic").style.left=x+"px";
+
+}
+function move(){ //우리만의 함수를 정의함, 개발자 정의함수라 한다
+	//alert("우주선 움직일 예정");
+	//자바스크립트를 이용하면, css마저도 제어할 수 있고,
+	//현재 함수에서는 우주선에 할당된 css중 position css의 left값을
+	//증가시켜보자
+
+	x=x+5;//기존x값에 5를 누적하라
+	
+	//문서내의 우주선중 id가 pic인 녀석의 position 중 left값 증가
+	document.getElementById("pic").style.left=x+"px";
+}
+
+//우주선 돌리기
+//문서내의 pic이라 불리는 요소의 css 중 transform:rotate 값을 증가시키기
+var r=0;//각도를 누적할 변수
+function rotate(){
+	r=r+3;
+	document.getElementById("pic").style.transform="rotate("+r+"deg)";
+
+}
+//js로 css의 투명도를 제어한다
+//문서내의 pic이라는 요소의 css를 opacity값을 (투명)0~1(불투명)
+var op=1;
+function opacity(){
+	op=op-0.1;
+	document.getElementById("pic").style.opacity=op;
+
+}
+
+//사람이 아닌 js라는 프로그램 언어가, 우리가 정의한 함수를 일정시간
+//간격으로 자동으로 호출해줄 수 있다
+setInterval("bgEffect()", 10); //1/1000초까지 표현가능
+</script>
+</head>
+<body>
+	<div id="wrapper">
+		<!--
+			jpg:고해상도 이미지 지원 확장자(사진)
+			gif:저해상도 이미지(아이콘, 투명이미지도 지원)
+			png:jpg+gif의 특징을 모두 갖음(고해상도+투명)
+		-->
+
+		<!--
+			모든 태그는 position이 기본으로 적용되어 있고, 디폴트 position은 relative이다. 
+			따라서 왼쪽 상단으로 모임
+		-->
+		<button onClick="moveleft();">좌측</button>
+		<button onClick="move();">우측</button>
+		<button onClick="up();">위</button>
+		<button onClick="down();">아래</button>
+		<button onClick="rotate();">돌리기</button>
+		<button onClick="opacity();">투명도</button>
+
+		<img id="pic" src="../images/plane.png">
+	</div>
+</body>
+</html>

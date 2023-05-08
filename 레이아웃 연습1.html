@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>레이아웃 연습1</title>
+<style>
+#wrapper{
+	width:600px;
+	height:500px;
+	background:pink;
+	margin:auto;
+	font-size:0px;
+
+}
+#header{
+	width:100%; /*코드 중복을 하지 않기 위해 안쪽 사각형의 너비값을 정하지 말자*/
+	height:100px;
+	background:red;
+
+}
+#side{
+	width:300px;
+	height:400px;
+	background:yellow;
+	display:inline-block;/*공존하면서 너비와 높이도 가능하게*/
+
+
+}
+#content{
+	width:300px;
+	height:400px;
+	background:green;
+	display:inline-block;
+
+}
+</style>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="header"></div>
+		<div id="side"></div>
+		<div id="content"></div>
+
+	</div>
+</body>
+</html>
